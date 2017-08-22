@@ -1,0 +1,12 @@
+<p>{{ registrationForm.value | json }} {{ registrationForm.status | json }}</p>
+
+<form novalidate [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <input placeholder="User Name" formControlName="username">
+  <!-- <input placeholder="First Name" formControlName="firstname">
+  <input placeholder="Last Name" formControlName="lastname"> -->
+  <input type="email" placeholder="Email" formControlName="email">
+  <input type="password" placeholder="Password" formControlName="password">
+  <!-- <input type="password" placeholder="Confirm Password"> -->
+  <br>
+  <button>Register</button>
+</form>
