@@ -14,7 +14,6 @@ import { User } from "../shared/user";
 export class RegisterComponent implements OnInit {
 
   registrationForm: FormGroup;
-  user:User;
 
   formErrors = {
     'username':'',

@@ -1,3 +1,12 @@
-<p>
-  login works!
-</p>
+<p>{{ loginForm.value | json }} {{ loginForm.status | json }}</p>
+
+<form novalidate [formGroup]="loginForm" (ngSubmit)="login()">
+  <input placeholder="User Name" formControlName="username">
+  <input type="password" placeholder="Password" formControlName="password">
+  <br>
+  <button>Login</button>
+</form>
+
+<div>
+  <p> <a routerLink="/register" routerLinkActive="active">Register</a></p>
+</div>

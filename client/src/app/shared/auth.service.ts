@@ -3,6 +3,8 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 
+import { User } from "../shared/user";
+
 @Injectable()
 
 export class AuthService {
@@ -11,7 +13,7 @@ export class AuthService {
 
   constructor(private http:Http) { }
 
-  register(user){			
+  register(user:User){			
   let headers = new Headers({ 'Content-Type': 'application/json' });
 	let options = new RequestOptions({ headers: headers });
 	let body = JSON.stringify(user);
@@ -19,7 +21,6 @@ export class AuthService {
   }
 
   private jwt() {
-    // create authorization header with jwt token
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser && currentUser.token) {
         let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
@@ -27,21 +28,21 @@ export class AuthService {
     }
   }
   
-  
-  login(username: string, password: string) {
-    return this.http.post('/api/authenticate', JSON.stringify({ username: username, password: password }))
+  //jwt is stored in local storage for a successful login
+  login(user:User) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let body = JSON.stringify(user);
+    return this.http.post(this.BASE_URL+'/api/auth/token', body, options)
       .map((response: Response) => {
-        // login successful if there's a jwt token in the response
         let user = response.json();
         if (user && user.token) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
         }
       });
   }
 
   logout() {
-    // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
   }
 }
