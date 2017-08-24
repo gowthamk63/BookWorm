@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import {BookService} from '../shared/book.service'
-import {Book} from '../shared/book';
+import { GoogleBooksApiService } from '../shared/google-books-api.service'
+import { Book } from '../shared/book';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   private searchTerms = new Subject<string>();
 
-  constructor(private bookservice:BookService) { }
+  constructor(private googlebooks:GoogleBooksApiService) { }
 
   search(term: string): void {
     this.searchTerms.next(term);
@@ -37,13 +37,12 @@ export class HomeComponent implements OnInit {
       .debounceTime(300)        
       .distinctUntilChanged()  
       .switchMap(term => term   
-        ? this.bookservice.search(term)
+        ? this.googlebooks.search(term)
         : Observable.of<Book[]>([]))
       .catch(error => {
         console.log(error);
         return Observable.of<Book[]>([]);
       });
-
   }  
 }
 

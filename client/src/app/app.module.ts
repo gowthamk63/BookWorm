@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
@@ -10,11 +10,13 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { RegisterComponent } from './register/register.component';
-
-import {AuthService} from './shared/auth.service';
-import {BookService} from './shared/book.service';
 import { LoginComponent } from './login/login.component';
 
+
+import { AuthService } from './shared/auth.service';
+import { GoogleBooksApiService } from './shared/google-books-api.service';
+import { AuthGuard } from "./shared/auth-guard.service";
+import { BookService } from "./shared/book.service";
 
 @NgModule({
   declarations: [
@@ -32,7 +34,7 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     HttpModule
   ],
-  providers: [BookService,AuthService],
+  providers: [BookService,AuthService,AuthGuard, GoogleBooksApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

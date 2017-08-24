@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
-    'bookworm.apps.BookwormConfig',
+    'api.apps.BookwormConfig',
 ]
 
 MIDDLEWARE_CLASSES = [

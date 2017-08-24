@@ -1,13 +1,11 @@
 <div id="search-component">
   <h4>Book Search</h4>
-  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
-    <div *ngFor="let book of books | async">
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)"/>
+  <ul>
+    <li *ngFor="let book of books | async">
       {{book.volumeInfo.title}}
-    </div>
+    </li>
+  </ul>
 </div>
 
-
-<div>
-  <p> <a routerLink="/register" routerLinkActive="active">Sign Up</a></p>
-</div>
 

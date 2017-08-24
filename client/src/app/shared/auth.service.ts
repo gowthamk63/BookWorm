@@ -17,7 +17,7 @@ export class AuthService {
   let headers = new Headers({ 'Content-Type': 'application/json' });
 	let options = new RequestOptions({ headers: headers });
 	let body = JSON.stringify(user);
-	return this.http.post(this.BASE_URL+'/bookworm/register/', body, options).map((response: Response) => response.json());
+	return this.http.post(this.BASE_URL+'/api/register/', body, options).map((response: Response) => response.json());
   }
 
   private jwt() {
@@ -43,6 +43,7 @@ export class AuthService {
   }
 
   logout() {
+    console.log('call made to logout in auh service');
     localStorage.removeItem('currentUser');
   }
 }
