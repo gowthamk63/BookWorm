@@ -1,7 +1,7 @@
-from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth import get_user_model
 
 from rest_framework.serializers import ModelSerializer,EmailField, ValidationError
+from .models import Book
 
 User= get_user_model()
 
@@ -37,3 +37,9 @@ class UserCreateSerializer(ModelSerializer):
         user_obj.set_password(password)
         user_obj.save()
         return user_obj
+
+class BooksSerializer(ModelSerializer):
+    class Meta:
+        model=Book
+        fields=['user','book_id']
+

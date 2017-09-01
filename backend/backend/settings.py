@@ -15,6 +15,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#Authentication with custom user model
+AUTH_USER_MODEL = 'api.User'
 
 # Application definition
 
@@ -128,3 +130,4 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_WHITELIST = (
     'localhost:4200',
 )
+
