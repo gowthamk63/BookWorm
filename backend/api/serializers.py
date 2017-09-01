@@ -39,6 +39,7 @@ class UserCreateSerializer(ModelSerializer):
         return user_obj
 
 class BooksSerializer(ModelSerializer):
+    user = UserCreateSerializer(read_only=True)
     class Meta:
         model=Book
         fields=['user','book_id']
