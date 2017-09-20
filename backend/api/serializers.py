@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 
-from rest_framework.serializers import ModelSerializer,EmailField, ValidationError
+from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField
 from .models import Book
 
 User= get_user_model()
@@ -20,8 +20,6 @@ class UserCreateSerializer(ModelSerializer):
 
 
     def create(self, validated_data):
-        print(validated_data)
-
         username= validated_data['username']
         # firstName= validated_data['firstName']
         # lastName= validated_data['lastName']
@@ -39,8 +37,13 @@ class UserCreateSerializer(ModelSerializer):
         return user_obj
 
 class BooksSerializer(ModelSerializer):
-    user = UserCreateSerializer(read_only=True)
+    user=PrimaryKeyRelatedField(many=True, queryset=User.objects.all())
     class Meta:
         model=Book
         fields=['user','book_id']
 
+# class Reader(ModelSerializer):
+#
+#     class Meta:
+#         model = Reader
+#         fields =['user','book','date_started']
