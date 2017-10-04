@@ -23,13 +23,10 @@ class BooksMixin(object):
 
 class BooksAPIView(BooksMixin, viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
-        u=User.objects.filter(id=self.request.user.id)
-        bk=Book(user=u,book_id=request.data['book_id'])
-        serializer = self.get_serializer(bk)
+        data=request.data.copy()
+        data['user']= [request.user.id]
+        serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-
-    def perform_create(self, serializer):
-        serializer.save()
