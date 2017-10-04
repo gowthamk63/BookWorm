@@ -33,7 +33,7 @@ export class AuthService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let body = JSON.stringify(user);
-    return this.http.post(this.BASE_URL+'/api/auth/token', body, options)
+    return this.http.post(this.BASE_URL+'/api/login', body, options)
       .map((response: Response) => {
         let user = response.json();
         if (user && user.token) {
