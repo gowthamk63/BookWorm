@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
-import { GoogleBooksApiService } from '../shared/google-books-api.service'
+import { GoogleBooksApiService } from '../shared/google-books-api.service';
+import {BookService} from '../shared/book.service'
 import { Book } from '../shared/book';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import 'rxjs/add/observable/of';
-
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -26,10 +26,14 @@ export class HomeComponent implements OnInit {
 
   private searchTerms = new Subject<string>();
 
-  constructor(private googlebooks:GoogleBooksApiService) { }
+  constructor(private googlebooks:GoogleBooksApiService, private bookservice:BookService) { }
 
   search(term: string): void {
     this.searchTerms.next(term);
+  }
+
+  addBook(book:Book):void{
+    this.bookservice.addBook(book);
   }
 
   ngOnInit(): void {

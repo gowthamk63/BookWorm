@@ -17,11 +17,14 @@ class UserCreateAPIView(CreateAPIView):
     queryset = User.objects.all()
 
 class BooksMixin(object):
-    queryset = Book.objects.all()
     serializer_class = BooksSerializer
     permission_classes = (IsOwnerOrReadOnly,)
 
 class BooksAPIView(BooksMixin, viewsets.ModelViewSet):
+    def get_queryset(self):
+        user=self.request.user
+        return Book.objects.filter(user=user)
+
     def create(self, request, *args, **kwargs):
         data=request.data.copy()
         data['user']= [request.user.id]

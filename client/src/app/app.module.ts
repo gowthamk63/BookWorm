@@ -17,6 +17,8 @@ import { AuthService } from './shared/auth.service';
 import { GoogleBooksApiService } from './shared/google-books-api.service';
 import { AuthGuard } from "./shared/auth-guard.service";
 import { BookService } from "./shared/book.service";
+import { ShelfComponent } from './shelf/shelf.component';
+import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { BookService } from "./shared/book.service";
     FooterComponent,
     RegisterComponent,
     LoginComponent,
+    ShelfComponent,
+    NotFoundComponentComponent,
   ],
   imports: [
     BrowserModule,

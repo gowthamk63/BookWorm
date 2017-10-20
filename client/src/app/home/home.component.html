@@ -4,8 +4,10 @@
   <ul>
     <li *ngFor="let book of books | async">
       {{book.volumeInfo.title}}
+      <button (click)="addBook(book)">Add to Shelf</button>
     </li>
   </ul>
+  <a routerLink="/shelf" routerLinkActive="active">Shelf</a>
 </div>
 
 

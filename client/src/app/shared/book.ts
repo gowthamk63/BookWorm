@@ -1,5 +1,5 @@
 export class Book {
-    id: number;
+    id: String;
     name: string;
     image: string;
     category: string;
