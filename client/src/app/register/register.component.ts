@@ -17,8 +17,8 @@ export class RegisterComponent implements OnInit {
 
   formErrors = {
     'username':'',
-    // 'firstname': '',
-    // 'lastname': '',
+    'first_name': '',
+    'last_name': '',
     'email': '',
     'password': '',
     // 'confirmPassword':'',
@@ -30,16 +30,16 @@ export class RegisterComponent implements OnInit {
       'minlength':     'User Name must be at least 2 characters long.',
       'maxlength':     'User Name cannot be more than 25 characters long.'
     },
-    // 'firstname': {
-    //   'required':      'First Name is required.',
-    //   'minlength':     'First Name must be at least 2 characters long.',
-    //   'maxlength':     'FirstName cannot be more than 25 characters long.'
-    // },
-    // 'lastname': {
-    //   'required':      'Last Name is required.',
-    //   'minlength':     'Last Name must be at least 2 characters long.',
-    //   'maxlength':     'Last Name cannot be more than 25 characters long.'
-    // },
+    'first_name': {
+      'required':      'First Name is required.',
+      'minlength':     'First Name must be at least 2 characters long.',
+      'maxlength':     'FirstName cannot be more than 25 characters long.'
+    },
+    'last_name': {
+      'required':      'Last Name is required.',
+      'minlength':     'Last Name must be at least 2 characters long.',
+      'maxlength':     'Last Name cannot be more than 25 characters long.'
+    },
     'email': {
       'required':      'Email is required.',
       'email':         'Email not in valid format.'
@@ -59,8 +59,8 @@ export class RegisterComponent implements OnInit {
   createForm() {
     this.registrationForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
-      // firstname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
-      // lastname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
+      first_name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
+      last_name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
       email: ['', [Validators.required, Validators.email] ],
       password:['',[Validators.required, Validators.minLength(2)]]
     });

@@ -10,8 +10,8 @@ class UserCreateSerializer(ModelSerializer):
         model= User
         fields= [
             'username',
-            # 'firstName',
-            # 'lastName',
+            'first_name',
+            'last_name',
             'email',
             'password',
         ]
@@ -21,16 +21,16 @@ class UserCreateSerializer(ModelSerializer):
 
     def create(self, validated_data):
         username= validated_data['username']
-        # firstName= validated_data['firstName']
-        # lastName= validated_data['lastName']
+        first_name= validated_data['first_name']
+        last_name= validated_data['last_name']
         email=validated_data['email']
         password=validated_data['password']
 
         user_obj=User(
             username=username,
             email=email,
-            # firstName=firstName,
-            # lastName=lastName
+            first_name=first_name,
+            last_name=last_name
         )
         user_obj.set_password(password)
         user_obj.save()
@@ -40,10 +40,4 @@ class BooksSerializer(ModelSerializer):
     user=PrimaryKeyRelatedField(many=True, queryset=User.objects.all())
     class Meta:
         model=Book
-        fields=['user','book_id']
-
-# class Reader(ModelSerializer):
-#
-#     class Meta:
-#         model = Reader
-#         fields =['user','book','date_started']
+        fields=['user','book_id','name']
