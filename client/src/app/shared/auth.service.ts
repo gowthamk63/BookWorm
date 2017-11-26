@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
+import {Router} from '@angular/router';
 
 import { User } from "../shared/user";
 
@@ -12,7 +13,7 @@ export class AuthService {
 
   BASE_URL=' http://localhost:8000';
 
-  constructor(private http:Http) { }
+  constructor(private http:Http, private router:Router) { }
 
   register(user:User){			
   let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -42,10 +43,10 @@ export class AuthService {
         }
       });
   }
-
+  
   logout() {
-    console.log('call made to logout in auh service');
     localStorage.removeItem('currentUser');
+    this.router.navigate(["/login"]);
   }
 }
 

@@ -13,8 +13,13 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  login_check():Boolean{
+    if (localStorage.getItem('currentUser')) {
+      return true;
+  }
+  }
+  
   logout(){
     this.auth.logout();
     }
-
 }
