@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 
 import { BookService } from "../shared/book.service";
-import {Book} from '../shared/book';
+import { Book } from '../shared/book';
 
 @Component({
   selector: 'app-shelf',
@@ -19,5 +19,4 @@ export class ShelfComponent implements OnInit {
     this.books=this.bookservice.getBooks();
     console.log(this.books.subscribe(data=>data));
   }
-
 }

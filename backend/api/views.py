@@ -18,7 +18,7 @@ class UserCreateAPIView(CreateAPIView):
 
 class BooksMixin(object):
     serializer_class = BooksSerializer
-    permission_classes = (IsOwnerOrReadOnly,)
+    permission_classes = (AllowAny,)
 
 class BooksAPIView(BooksMixin, viewsets.ModelViewSet):
     def get_queryset(self):

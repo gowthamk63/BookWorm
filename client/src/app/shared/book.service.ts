@@ -19,9 +19,12 @@ export class BookService {
   }
 
   addBook(book: Book){		
+    console.log(book);
       let headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': "JWT "+JSON.parse(localStorage.getItem('currentUser')).token});
       let options = new RequestOptions({ headers: headers });
       let body = {book_id: book.id};
       return this.http.post(this.BASE_URL, body, options).map((response: Response) => response.json()).subscribe();
   }
 }
+
+// , name: book.VolumeInfo.name}

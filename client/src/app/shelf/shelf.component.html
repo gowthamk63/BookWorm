@@ -1,5 +1,6 @@
 <ul>
   <li *ngFor="let book of books | async">
     {{book.book_id}}
+    {{book.volumeInfo.title}}
   </li>
 </ul>
