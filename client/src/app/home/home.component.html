@@ -1,14 +1,15 @@
 <div class="container" id="books_list">
   <h4>Book Search</h4>
-  <input #searchBox id="search-box" (keyup)="search(searchBox.value)"/>
-  <div class="card-deck">
-      <div class="card text-center" style="width: 20rem;"  *ngFor="let book of books | async">
-        <img class="card-img-top" src="{{book.volumeInfo.imageLinks.smallThumbnail}}" alt="{{book.volumeInfo.title}}">
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)"/><br><br>
+  
+      <div class="card text-center col-md-3"  *ngFor="let book of books | async">
+          
+            <img class="card-img-top" (click)="showDescription(book)" src="{{book.volumeInfo.imageLinks.smallThumbnail}}" alt="{{book.volumeInfo.title}}">
         <div class="card-block">
           <h4 class="card-title">{{book.volumeInfo.title}}</h4>
-          <p class="card-text">{{book.volumeInfo.description}}</p>
+          <!-- <p style="height:40px" class="card-text">{{book.volumeInfo.description}}</p> -->
           <button (click)="addBook(book)" class="btn btn-primary glyphicon glyphicon-plus">Add to Shelf</button>
         </div>
-      </div>
-    </div>
+          </div>
+      
 </div>

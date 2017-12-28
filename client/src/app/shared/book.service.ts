@@ -26,5 +26,3 @@ export class BookService {
       return this.http.post(this.BASE_URL, body, options).map((response: Response) => response.json()).subscribe();
   }
 }
-
-// , name: book.VolumeInfo.name}
